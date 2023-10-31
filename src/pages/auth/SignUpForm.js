@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import styles from "../styles/SignInUpForm.module.css";
-import btnStyles from "../styles/Button.module.css";
-import appStyles from "../App.module.css";
+import styles from "../../styles/SignInUpForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Image,
+  Col,
+  Row,
+  Container,
+  Alert,
+} from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
@@ -21,6 +29,7 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -32,9 +41,15 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
+      console.log("history.push");
       history.push("/signin");
     } catch (err) {
-        setErrors(err.response?.data)
+      if (err.response && err.response.data) {
+        setErrors(err.response.data);
+      } else {
+        // Handle unexpected server response here
+        console.error("Unexpected server response:", err);
+      }
     }
   };
 
@@ -56,6 +71,11 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
             <Form.Group controlId="email">
               <Form.Label className="d-none">Email address</Form.Label>
               <Form.Control
@@ -66,6 +86,11 @@ const SignUpForm = () => {
                 value={email}
                 onChange={handleChange}
               />
+              {errors.email?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -80,6 +105,11 @@ const SignUpForm = () => {
                 value={password1}
                 onChange={handleChange}
               />
+              {errors.password1?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
             </Form.Group>
             <Form.Group controlId="password2">
               <Form.Label className="d-none">Confirm Password</Form.Label>
@@ -91,6 +121,11 @@ const SignUpForm = () => {
                 value={password2}
                 onChange={handleChange}
               />
+              {errors.password2?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
             </Form.Group>
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
@@ -98,6 +133,11 @@ const SignUpForm = () => {
             >
               Sign Up
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx} className="mt-3">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
