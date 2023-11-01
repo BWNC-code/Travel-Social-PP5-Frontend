@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     handleMount();
-  });
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

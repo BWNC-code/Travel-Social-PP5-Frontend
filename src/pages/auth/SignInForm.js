@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import axios from "axios";
 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -8,47 +9,40 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import axios from "axios";
+import { SetCurrentUserContext } from "../../App";
 
 function SignInForm() {
+  const setCurrentUser = useContext(SetCurrentUserContext);
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
-
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.post("/dj-rest-auth/login/", signInData);
-      console.log("history.push");
-      history.push("/");
-    } catch (err) {
-      if (err.response && err.response.data) {
-        setErrors(err.response.data);
-      } else {
-        // Handle unexpected server response here
-        console.error("Unexpected server response:", err);
-      }
-    }
   };
 
   return (
@@ -60,32 +54,33 @@ function SignInForm() {
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
-                className={styles.Input}
                 type="text"
-                placeholder="Enter username"
+                placeholder="Username"
                 name="username"
+                className={styles.Input}
                 value={username}
                 onChange={handleChange}
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
+
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
-                className={styles.Input}
                 type="password"
-                placeholder="Enter Password"
+                placeholder="Password"
                 name="password"
+                className={styles.Input}
                 value={password}
                 onChange={handleChange}
               />
             </Form.Group>
             {errors.password?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
@@ -93,8 +88,13 @@ function SignInForm() {
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
             >
-              Sign In
+              Sign in
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
