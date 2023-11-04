@@ -11,6 +11,9 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 
+import NoResults from "../../assets/no-results.png";
+import Asset from "../../components/Asset";
+
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -37,14 +40,20 @@ function PostsPage({ message, filter = "" }) {
         <p>Popular profiles mobile</p>
         {hasLoaded ? (
           <>
-            {posts.results.length
-              ? posts.results.map((post) => (
-                  <Post key={post.id} {...post} setPosts={setPosts} />
-                ))
-              : console.log("show no results listed")}
+            {posts.results.length ? (
+              posts.results.map((post) => (
+                <Post key={post.id} {...post} setPosts={setPosts} />
+              ))
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
           </>
         ) : (
-          console.log("show spinner")
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
