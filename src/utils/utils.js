@@ -14,3 +14,21 @@ export const fetchMoreData = async (resource, setResource) => {
     }));
   } catch (err) {}
 };
+
+export const followHelper = (profile, clickedProfile, following_id) => {
+  return profile.id === clickedProfile.id
+    ? //This is the profile clicked on, update its followers count and set its following id
+      {
+        ...profile,
+        followers_count: profile.followers_count + 1,
+        following_id,
+      }
+    : profile.is_owner
+    ? //this is the profile of the logged in user, update its following count
+      {
+        ...profile,
+        following_count: profile.following_count + 1,
+      }
+    : //this is not the profile clicked on or the logged in user so do nothing
+      profile;
+};
