@@ -17,12 +17,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import PostFilter from "./PostFilter";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [category, setCategory] = useState("");
   const { pathname } = useLocation();
+  const currentUser = useCurrentUser();
 
   const [query, setQuery] = useState("");
 
@@ -52,7 +54,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, category]);
+  }, [filter, query, pathname, category, currentUser]);
 
   return (
     <Row className="h-100">
