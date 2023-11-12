@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -23,13 +23,30 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
 
   const [postData, setPostData] = useState({
     title: "",
     content: "",
     image: "",
+    category: "",
   });
-  const { title, content, image } = postData;
+  const { title, content, image, category } = postData;
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axiosReq.get(`/categories`);
+        setCategories(data.results);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchCategories();
+
+    return () => {};
+  }, []);
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -59,6 +76,11 @@ function PostCreateForm() {
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
 
+    // Append category only if a valid category is selected
+    if (category) {
+      formData.append("category", category);
+    }
+
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
@@ -86,6 +108,22 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+        >
+          <option value="">Select a Category</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
+        </Form.Control>
+      </Form.Group>
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
