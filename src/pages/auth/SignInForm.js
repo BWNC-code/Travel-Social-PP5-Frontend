@@ -16,9 +16,10 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
-import { setTokenTimestamp } from "../../utils/utils";
+import { isSafariBrowser, setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
+  const isSafari = isSafariBrowser();
   const setCurrentUser = useSetCurrentUser();
   useRedirect("loggedIn");
 
@@ -89,6 +90,7 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
+
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
@@ -103,10 +105,18 @@ function SignInForm() {
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/signup">
+          <Link className={styles.Link} to="/signup/">
             Don't have an account? <span>Sign up now!</span>
           </Link>
         </Container>
+        {isSafari && (
+          <Container className={`mt-3`}>
+            <Alert variant="info" className="mt-3">
+              If you're using Safari, please ensure "Prevent Cross-Site
+              Tracking" is disabled in your browser settings to enable sign-in.
+            </Alert>
+          </Container>
+        )}
       </Col>
       <Col
         md={6}

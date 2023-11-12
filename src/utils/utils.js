@@ -64,3 +64,13 @@ export const shouldRefreshToken = () => {
 export const removeTokenTimestamp = () => {
   localStorage.removeItem("refreshTokenTimestamp");
 };
+
+export function isSafariBrowser() {
+  const userAgent = window.navigator.userAgent;
+  const isChrome = userAgent.indexOf("Chrome") > -1;
+  const isSafari = userAgent.indexOf("Safari") > -1;
+
+  // Chrome has both 'Chrome' and 'Safari' in its user agent string.
+  // Safari has only 'Safari'.
+  return isSafari && !isChrome;
+}
