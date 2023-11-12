@@ -1,23 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Form } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Form } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
+
 
 const PostFilter = ({ onCategoryChange }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // Fetch categories from your API
-    fetch('/api/categories')
-      .then(response => response.json())
-      .then(data => setCategories(data));
-  }, []);
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axiosReq.get("/categories/");
+        setCategories(data.results); // Adjust based on your API response structure
+      } catch (err) {
+        console.log("Error fetching categories", err);
+      }
+    };
+
+    fetchCategories();
+  }, []); 
 
   return (
-    <Form.Select aria-label="Select category" onChange={e => onCategoryChange(e.target.value)}>
-      <option value="">All Categories</option>
-      {categories.map(category => (
-        <option key={category.id} value={category.id}>{category.name}</option>
-      ))}
-    </Form.Select>
+    <Form.Group>
+      <Form.Label>Category</Form.Label>
+      <Form.Control
+        as="select"
+        name="category"
+        onChange={(e) => onCategoryChange(e.target.value)} // Use onCategoryChange for handling changes
+      >
+        <option value="">Select a Category</option>
+        {categories.map((cat) => (
+          <option key={cat.id} value={cat.id}>
+            {cat.name}
+          </option>
+        ))}
+      </Form.Control>
+    </Form.Group>
   );
 };
 
