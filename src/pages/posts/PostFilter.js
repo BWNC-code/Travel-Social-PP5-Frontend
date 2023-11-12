@@ -10,7 +10,9 @@ const PostFilter = ({ onCategoryChange }) => {
       try {
         const { data } = await axiosReq.get("/categories/");
         setCategories(data.results);
-      } catch (err) {}
+      } catch (err) {
+        // console.log(err)
+      }
     };
 
     fetchCategories();

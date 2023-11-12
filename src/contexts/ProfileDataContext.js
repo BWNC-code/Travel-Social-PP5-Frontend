@@ -38,7 +38,9 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
-    } catch (err) {}
+    } catch (err) {
+      // console.log(err)
+    }
   };
 
   const handleUnfollow = async (clickedProfile) => {
@@ -59,7 +61,9 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
-    } catch (err) {}
+    } catch (err) {
+      // console.log(err)
+    }
   };
 
   useEffect(() => {
@@ -72,7 +76,9 @@ export const ProfileDataProvider = ({ children }) => {
           ...prevState,
           popularProfiles: data,
         }));
-      } catch (err) {}
+      } catch (err) {
+        // console.log(err)
+      }
     };
 
     handleMount();

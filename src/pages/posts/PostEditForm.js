@@ -36,7 +36,9 @@ function PostEditForm() {
       try {
         const { data } = await axiosReq.get("/categories/");
         setCategories(data.results);
-      } catch (err) {}
+      } catch (err) {
+        // console.log(err)
+      }
     };
 
     const fetchPostData = async () => {
@@ -48,7 +50,9 @@ function PostEditForm() {
         } else {
           history.push("/");
         }
-      } catch (err) {}
+      } catch (err) {
+        // console.log(err)
+      }
     };
 
     fetchCategories();
