@@ -16,18 +16,29 @@ import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import PostFilter from "./PostFilter";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [category, setCategory] = useState("");
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState("");
 
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory);
+    setPosts({ results: [] });
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
+        const categoryQuery = category ? `&category=${category}` : "";
+        const { data } = await axiosReq.get(
+          `/posts/?${filter}search=${query}${categoryQuery}`
+        );
+
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
@@ -43,7 +54,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, category]);
 
   return (
     <Row className="h-100">
@@ -61,6 +72,7 @@ function PostsPage({ message, filter = "" }) {
             className="mr-sm-2"
             placeholder="Search Posts"
           ></Form.Control>
+          <PostFilter onCategoryChange={handleCategoryChange} />
         </Form>
 
         {hasLoaded ? (
