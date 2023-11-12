@@ -18,7 +18,7 @@ const PostFilter = ({ onCategoryChange }) => {
 
   return (
     <Form.Group>
-      <Form.Label>Category</Form.Label>
+      <Form.Label className="d-none">Category</Form.Label>
       <Form.Control
         as="select"
         name="category"
