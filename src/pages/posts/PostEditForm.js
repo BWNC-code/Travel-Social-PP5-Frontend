@@ -36,9 +36,7 @@ function PostEditForm() {
       try {
         const { data } = await axiosReq.get("/categories/");
         setCategories(data.results);
-      } catch (err) {
-        console.log("Error fetching categories", err);
-      }
+      } catch (err) {}
     };
 
     const fetchPostData = async () => {
@@ -46,14 +44,11 @@ function PostEditForm() {
         const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, content, image, category, is_owner } = data;
         if (is_owner) {
-          console.log(data);
           setPostData({ title, content, image, category });
         } else {
           history.push("/");
         }
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
 
     fetchCategories();
@@ -96,7 +91,6 @@ function PostEditForm() {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

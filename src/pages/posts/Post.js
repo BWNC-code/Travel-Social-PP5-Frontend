@@ -41,9 +41,7 @@ const Post = (props) => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   const handleLike = async () => {
@@ -57,9 +55,7 @@ const Post = (props) => {
             : post;
         }),
       }));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   const handleUnlike = async () => {
@@ -73,9 +69,7 @@ const Post = (props) => {
             : post;
         }),
       }));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

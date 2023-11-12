@@ -9,10 +9,8 @@ const PostFilter = ({ onCategoryChange }) => {
     const fetchCategories = async () => {
       try {
         const { data } = await axiosReq.get("/categories/");
-        setCategories(data.results); // Adjust based on your API response structure
-      } catch (err) {
-        console.log("Error fetching categories", err);
-      }
+        setCategories(data.results);
+      } catch (err) {}
     };
 
     fetchCategories();
