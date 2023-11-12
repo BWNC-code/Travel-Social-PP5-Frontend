@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
-
 
 const PostFilter = ({ onCategoryChange }) => {
   const [categories, setCategories] = useState([]);
@@ -17,7 +16,7 @@ const PostFilter = ({ onCategoryChange }) => {
     };
 
     fetchCategories();
-  }, []); 
+  }, []);
 
   return (
     <Form.Group>
