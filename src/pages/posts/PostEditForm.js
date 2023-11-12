@@ -17,31 +17,47 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
 
   const [postData, setPostData] = useState({
     title: "",
     content: "",
     image: "",
+    category: "",
   });
-  const { title, content, image } = postData;
+  const { title, content, image, category } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
-    const handleMount = async () => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axiosReq.get("/categories/");
+        setCategories(data.results);
+      } catch (err) {
+        console.log("Error fetching categories", err);
+      }
+    };
+
+    const fetchPostData = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, is_owner } = data;
-
-        is_owner ? setPostData({ title, content, image }) : history.push("/");
+        const { title, content, image, category, is_owner } = data;
+        if (is_owner) {
+          console.log(data);
+          setPostData({ title, content, image, category });
+        } else {
+          history.push("/");
+        }
       } catch (err) {
         console.log(err);
       }
     };
 
-    handleMount();
+    fetchCategories();
+    fetchPostData();
   }, [history, id]);
 
   const handleChange = (event) => {
@@ -71,6 +87,10 @@ function PostEditForm() {
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
+    // Append category only if a valid category is selected
+    if (category) {
+      formData.append("category", category);
+    }
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
@@ -99,6 +119,22 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+        >
+          <option value="">Select a Category</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
+        </Form.Control>
+      </Form.Group>
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
