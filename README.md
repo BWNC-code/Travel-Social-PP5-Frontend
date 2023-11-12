@@ -1,102 +1,156 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Travel Social
 
-Welcome,
+![responsive views](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699824152/amiresponsivetravelsocial_krranh.png)
 
-This is the Code Institute student template for React apps on the Codeanywhere IDE. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.  
-DO NOT use this template if you are using the Gitpod IDE. Use the following command instead:  
-`npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+## Table of Contents
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **31st August, 2023**
+- [Introduction](#introduction)
+- [Features](#features)
+- [UI Design](#ui-design)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Known Issues](#known-issues)
+- [Future Enhancements](#future-enhancements)
+- [Credits](#credits)
 
-## Codeanywhere Reminders
+## Introduction
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+Travel Social is a vibrant web application designed for travel enthusiasts to share and explore engaging travel content. Users can create posts, share travel stories, upload images, and interact with others through likes, comments, and follows. The application caters to a wide range of travel interests including adventure, luxury, cultural experiences, and more.
 
-To log into the Heroku toolbelt CLI:
+The platform renders differently depending on authentication states of the users. Unregistered users can view other users profiles, and view, search and filter registered users posts. Users can also sign up to join the platform, which provides them with additional functionality, such as the ability to create their own profile, and create posts. Registered users can also comment on posts and like posts, to support and build a rapport with other travelers. They can also follow or unfollow other users to add them to a personal feed.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+View the live project [here](https://travel-social-frontend-addfa6211efa.herokuapp.com/)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Summary of Project Epics and Sprints
 
----
+The development of this project adhered to agile methodologies, focusing on incremental progress through small, manageable feature releases. The project was divided into four distinct sprints. To effectively manage these sprints, a Kanban board was set up using GitHub Projects. This tool played a crucial role in visualizing the workflow, controlling the number of tasks in progress at any given time, and enhancing overall efficiency and workflow dynamics.
 
-Happy coding!
+### Epics:
+1. Front-End Development
+2. Back-End Development
+3. Integration of Front-End with Back-End
+4. Documentation, Testing & Deployment
 
-# Getting Started with Create React App
+### Sprint Summaries:
+- Sprint 1 (Week 1) - Setting the Foundation:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  - Front-End: Initialized React project and basic component setup.
+  - Back-End: Django project setup, database modeling (posts, likes, comments, followers), CRUD for posts/likes/comments, and user auth functionality.
+  - Documentation: Began README documentation for design and database.
 
-## Available Scripts
+- Sprint 2 (Week 2) - Core Functionalities:
 
-In the project directory, you can run:
+  - Front-End: Designed responsive layout, navigation, browsing/search features, and implemented post interactions (likes, comments).
 
-### `npm install`
+- Sprint 3 (Week 3) - Advanced Features & Integration:
 
-Installs the required npm packages.
+  - Front-End: Added edit/delete for posts, follow functionality, and started backend integration for data retrieval.
+  - Back-End: Developed follower functionality and access controls.
+  - Integration: Completed front-end CRUD operations integrated with the backend, ensuring feedback from API.
 
-### `npm start`
+- Sprint 4 (Week 4) - Polishing, Testing & Deployment:
 
-Runs the app in the development mode.\
-Open port 3000 to view it in the browser.
+  - Front-End: Tested responsiveness, UI/UX fixes, manual testing, and exception handling.
+  - Back-End: Conducted manual testing and security finalization.
+  - Deployment: Deployed both applications, ensured security, and tested deployed versions.
+  - Documentation: Documented deployment process, UX design, user stories, project goals, React components, DRF functionalities, and library usage.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Each sprint focused on progressively developing and integrating the platform's core features, culminating in a thorough testing and deployment phase.
 
-### `npm test`
+The GitHub project used throughout for both repositories can be found [here](https://github.com/users/BWNC-code/projects/2/views/1)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **User Authentication**: Secure sign-up and login functionality.
+  - Account Creation: New users can sign up via the 'Sign Up' link, using a streamlined registration process.
+  - Account Access: Existing users can log in through the 'Sign In' link to access their accounts.
+- **Post Creation and Management**: Users can create, view, edit, and delete their travel posts.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Interactive Posts**: Users can like, comment on, and share posts.
+- **Advanced Search**: Feature-rich search functionality to find specific posts.
+- **Follow System**: Users can follow each other to see updates in their feed.
+- **Responsive Design**: Accessible on various devices, enhancing user experience.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Reusable React Components
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Asset: A versatile component used for loading images, messages, and spinners.
+- Avatar: Consistently displays user avatars across the platform.
+- NavBar: A reusable component providing navigation across the site.
+- NotFound Page: Displayed when users navigate to an invalid URL.
+- Edit/Delete Dropdown Menu: Enables users to manage their posts, events, comments, and reviews.
 
-### `npm run eject`
+## UI Design
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Colour Scheme
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A relatively neutral colour scheme was chosen with simplicity in mind, as this app is built for everyone. As it's an app for sharing personal journeys, a quiet scheme was also important to that the posts that the users would be sharing would be at the forefront. The colour scheme was also chosen with a focus on accessibility and contrast. Generated by the [https://coolors.co/](https://coolors.co/) colour scheme generator with a few colours in mind.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Colour scheme](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699824152/colorscheme_s2kzvv.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Logo
 
-## Learn More
+The logo was created with the [logoai.com](https://www.logoai.com/) ai logo generator. I selected the theme, colour scheme, and name and then applied it through the website and as the favicon.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Logo](public/android-chrome-192x192.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Typography
 
-### Code Splitting
+Raleway was imported from [Google Fonts](https://fonts.google.com/specimen/DM+Sans) as the website's main font, as it is a low-contrast sans serif design, intended for use at smaller text sizes, which is ideal for full accessibility and responsively across smaller screen sizes. I also found it similar to, but more sleek than, sans-serif (the backup font for the website).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Imagery
 
-### Analyzing the Bundle Size
+- The few stock images used in the sign in and sign up pages were sourced from free stock image provider [Pexels](https://www.pexels.com/) as were the test posts and profiles created on the website
+- The icons were imported from [Font Awesome](https://fontawesome.com/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Technologies Used
 
-### Making a Progressive Web App
+### Languages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **HTML5** - Provides the content and structure for the website
+- **CSS3** - Provides the styling for the website
+- **JavaScript** - Provides interactive elements of the website
 
-### Advanced Configuration
+### Frameworks, Software and Web Applications
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **React.js**: For building the user interface.
+- **Bootstrap for React**: For styling and responsive design.
+- **Axios**: For making API requests to the backend.
+- **Other Libraries**: Including React Router for navigation, Context API for state management, etc.
+- **Hosting/Deployment**: Heroku, Cloudinary (for static and media files)
+- **Pexels** - Free stock image provider for posts, events and avatars that were uploaded
 
-### Deployment
+## Forking the Project Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+You can create your own independent version of this project by forking the repository. This allows you to experiment and make changes without impacting the original codebase. Here's how to fork the repository:
 
-### `npm run build` fails to minify
+1. Sign in to your GitHub account and navigate to the repository.
+2. Look for the 'Fork' button at the top right corner of the page and click on it. This action creates a personal copy of the repository in your GitHub account.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Cloning the Project Repository
+
+Cloning the repository creates a local copy on your machine, maintaining a connection with the original GitHub repository. This enables you to sync your local version with any updates made in the original project. To clone the repository, follow these steps:
+
+1. In your forked repository, click the 'Code' button.
+2. From the dropdown, choose the method of cloning you prefer (HTTPS, SSH, or GitHub CLI), and copy the provided URL.
+3. Open your terminal, navigate to the directory where you want to clone the repository, and run git clone followed by the copied URL.
+4. By forking and cloning the repository, you can freely experiment with the code and even contribute to the original project through pull requests.
+
+### Remote Deployment
+
+To deploy the application on Heroku and ensure that all features work as expected, follow these steps:
+
+- Create a new Heroku app.
+
+- Set up the necessary Config Vars in the Settings tab.
+
+- Connect your GitHub account and select the repository to be deployed.
+
+- Choose either manual deployment or enable automatic deployment.
+
+
+## Acknowledgements
+
+Thanks to my mentors, Jubril Akolade and Chris Quinn for their advice and guidance. Thanks as well to the Code Institute team and tutors for their support.
