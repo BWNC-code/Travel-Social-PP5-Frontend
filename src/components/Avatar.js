@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "../styles/Avatar.module.css";
 
 const Avatar = ({ src, height = 45, text }) => {
-  return (
+  return src ? (
     <span>
       <img
         className={styles.Avatar}
@@ -14,11 +14,11 @@ const Avatar = ({ src, height = 45, text }) => {
       />
       {text}
     </span>
-  );
+  ) : null;
 };
 
 Avatar.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   height: PropTypes.number,
   text: PropTypes.string,
 };
