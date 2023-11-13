@@ -9,6 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import PropTypes from "prop-types";
 
 const Post = (props) => {
   const {
@@ -108,7 +109,7 @@ const Post = (props) => {
           {is_owner ? (
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>You can't like your own post</Tooltip>}
+              overlay={<Tooltip>You can&apos;t like your own post</Tooltip>}
             >
               <i className="far fa-heart" />
             </OverlayTrigger>
@@ -137,6 +138,24 @@ const Post = (props) => {
       </Card.Body>
     </Card>
   );
+};
+
+Post.propTypes = {
+  id: PropTypes.number.isRequired,
+  owner: PropTypes.string.isRequired,
+  profile_id: PropTypes.number.isRequired,
+  profile_image: PropTypes.string,
+  comments_count: PropTypes.number.isRequired,
+  likes_count: PropTypes.number.isRequired,
+  like_id: PropTypes.number,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  image: PropTypes.string,
+  category: PropTypes.string,
+  category_name: PropTypes.string,
+  updated_at: PropTypes.string.isRequired,
+  postPage: PropTypes.bool,
+  setPosts: PropTypes.func.isRequired,
 };
 
 export default Post;

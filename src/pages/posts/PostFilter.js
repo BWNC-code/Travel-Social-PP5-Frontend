@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
+import PropTypes from "prop-types";
 
 const PostFilter = ({ onCategoryChange }) => {
   const [categories, setCategories] = useState([]);
@@ -35,6 +36,10 @@ const PostFilter = ({ onCategoryChange }) => {
       </Form.Control>
     </Form.Group>
   );
+};
+
+PostFilter.propTypes = {
+  onCategoryChange: PropTypes.func.isRequired,
 };
 
 export default PostFilter;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
+import PropTypes from "prop-types";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
@@ -68,5 +69,12 @@ function CommentEditForm(props) {
     </Form>
   );
 }
+
+CommentEditForm.propTypes = {
+  id: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
+  setShowEditForm: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
+};
 
 export default CommentEditForm;

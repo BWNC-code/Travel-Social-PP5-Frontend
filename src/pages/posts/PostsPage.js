@@ -10,6 +10,7 @@ import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
+import PropTypes from "prop-types";
 
 import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
@@ -108,5 +109,10 @@ function PostsPage({ message, filter = "" }) {
     </Row>
   );
 }
+
+PostsPage.propTypes = {
+  message: PropTypes.string,
+  filter: PropTypes.string,
+};
 
 export default PostsPage;

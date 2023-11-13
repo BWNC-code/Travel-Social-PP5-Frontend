@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import Button from "react-bootstrap/Button";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
+import PropTypes from "prop-types";
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
@@ -50,6 +51,17 @@ const Profile = (props) => {
       </div>
     </div>
   );
+};
+
+Profile.propTypes = {
+  profile: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    following_id: PropTypes.number,
+    image: PropTypes.string,
+    owner: PropTypes.string.isRequired,
+  }).isRequired,
+  mobile: PropTypes.bool,
+  imageSize: PropTypes.number,
 };
 
 export default Profile;

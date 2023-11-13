@@ -7,6 +7,7 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Comment.module.css";
 import CommentEditForm from "./CommentEditForm";
+import PropTypes from "prop-types";
 
 const Comment = (props) => {
   const {
@@ -78,6 +79,17 @@ const Comment = (props) => {
       </Media>
     </>
   );
+};
+
+Comment.propTypes = {
+  profile_id: PropTypes.number.isRequired,
+  profile_image: PropTypes.string,
+  owner: PropTypes.string.isRequired,
+  updated_at: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  setPost: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
 };
 
 export default Comment;
