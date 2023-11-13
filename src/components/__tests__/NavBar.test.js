@@ -1,7 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import NavBar from "../NavBar";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CurrentUserProvider } from "../../contexts/CurrentUserContext";
+import {
+  CurrentUserProvider,
+  CurrentUserContext,
+} from "../../contexts/CurrentUserContext";
 
 test("renders NavBar", () => {
   render(
@@ -10,7 +15,6 @@ test("renders NavBar", () => {
     </Router>
   );
 
-  //   screen.debug();
   const signInLink = screen.getByRole("link", { name: "Sign in" });
   expect(signInLink).toBeInTheDocument();
 });
@@ -27,13 +31,16 @@ test("renders link to the user profile for a logged in user", async () => {
   expect(profileAvatar).toBeInTheDocument();
 });
 
-test("renders sign in and sign up buttons on log out", async () => {
-    render(
-      <Router>
-        <CurrentUserProvider>
-          <NavBar />
-        </CurrentUserProvider>
-      </Router>
-    );
-    const signOutLink = await screen.findByRole('link', {name: 'Sign out'})
-  });
+test("renders sign in and sign up buttons on log out", () => {
+  render(
+    <Router>
+      <CurrentUserContext.Provider value={null}>
+        <NavBar />
+      </CurrentUserContext.Provider>
+    </Router>
+  );
+  const signInLink = screen.getByRole("link", { name: "Sign in" });
+  expect(signInLink).toBeInTheDocument();
+  const signUpLink = screen.getByRole("link", { name: "Sign up" });
+  expect(signUpLink).toBeInTheDocument();
+});
