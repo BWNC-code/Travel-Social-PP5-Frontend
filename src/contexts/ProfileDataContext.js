@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import PropTypes from "prop-types";
 import { followHelper, unfollowHelper } from "../utils/utils";
 import { useCurrentUser } from "./CurrentUserContext";
 
@@ -93,4 +94,8 @@ export const ProfileDataProvider = ({ children }) => {
       </SetProfileDataContext.Provider>
     </ProfileDataContext.Provider>
   );
+};
+
+ProfileDataProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
