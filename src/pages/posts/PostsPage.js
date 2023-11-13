@@ -72,7 +72,7 @@ function PostsPage({ message, filter = "" }) {
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search Posts"
+            placeholder="Search keywords"
           ></Form.Control>
           <PostFilter onCategoryChange={handleCategoryChange} />
         </Form>

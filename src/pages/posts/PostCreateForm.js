@@ -198,6 +198,9 @@ function PostCreateForm() {
                 {message}
               </Alert>
             ))}
+            <Alert variant="info" className="text-center">
+              Please keep images 2MB or less
+            </Alert>
 
             <div className="d-md-none">{textFields}</div>
           </Container>
