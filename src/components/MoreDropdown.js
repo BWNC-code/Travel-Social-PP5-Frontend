@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fas fa-ellipsis-v"
+    role="button"
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
@@ -24,7 +25,12 @@ ThreeDots.propTypes = {
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="down">
-      <Dropdown.Toggle as={ThreeDots} id="dropdown-custom-components">
+      <Dropdown.Toggle
+        as={ThreeDots}
+        id="dropdown-custom-components"
+        role="button"
+        aria-label="toggle"
+      >
         Custom toggle
       </Dropdown.Toggle>
 
