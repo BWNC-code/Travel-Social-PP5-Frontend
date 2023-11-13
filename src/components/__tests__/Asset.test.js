@@ -25,4 +25,3 @@ test("renders a message when message is provided", () => {
   expect(messageElement).toBeInTheDocument();
 });
 
-// Additional tests can include scenarios like rendering with a broken image URL
