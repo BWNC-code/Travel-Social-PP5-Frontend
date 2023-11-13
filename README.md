@@ -4,17 +4,28 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [UI Design](#ui-design)
-- [Technologies Used](#technologies-used)
-- [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Known Issues](#known-issues)
-- [Future Enhancements](#future-enhancements)
-- [Credits](#credits)
+- [Travel Social](#travel-social)
+  - [Introduction](#introduction)
+  - [Summary of Project Epics and Sprints](#summary-of-project-epics-and-sprints)
+    - [Epics:](#epics-)
+    - [Sprint Summaries:](#sprint-summaries-)
+  - [Features](#features)
+    - [Reusable React Components](#reusable-react-components)
+    - [Future Features/Developments](#future-features-developments)
+  - [UI Design](#ui-design)
+    - [Colour Scheme](#colour-scheme)
+    - [Logo](#logo)
+    - [Typography](#typography)
+    - [Imagery](#imagery)
+  - [Technologies Used](#technologies-used)
+    - [Languages](#languages)
+    - [Frameworks, Software and Web Applications](#frameworks--software-and-web-applications)
+  - [Forking the Project Repository](#forking-the-project-repository)
+  - [Cloning the Project Repository](#cloning-the-project-repository)
+    - [Remote Deployment](#remote-deployment)
+  - [Acknowledgements](#acknowledgements)
+
+[Table of contents generated with markdown-toc](http://ecotrust-canada.github.io/markdown-toc/)
 
 ## Introduction
 
@@ -29,12 +40,14 @@ View the live project [here](https://travel-social-frontend-addfa6211efa.herokua
 The development of this project adhered to agile methodologies, focusing on incremental progress through small, manageable feature releases. The project was divided into four distinct sprints. To effectively manage these sprints, a Kanban board was set up using GitHub Projects. This tool played a crucial role in visualizing the workflow, controlling the number of tasks in progress at any given time, and enhancing overall efficiency and workflow dynamics.
 
 ### Epics:
+
 1. Front-End Development
 2. Back-End Development
 3. Integration of Front-End with Back-End
 4. Documentation, Testing & Deployment
 
 ### Sprint Summaries:
+
 - Sprint 1 (Week 1) - Setting the Foundation:
 
   - Front-End: Initialized React project and basic component setup.
@@ -65,14 +78,36 @@ The GitHub project used throughout for both repositories can be found [here](htt
 ## Features
 
 - **User Authentication**: Secure sign-up and login functionality.
+
   - Account Creation: New users can sign up via the 'Sign Up' link, using a streamlined registration process.
+
+  ![sign up form](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905456/signup_vzv8n4.png)
+
   - Account Access: Existing users can log in through the 'Sign In' link to access their accounts.
+
+  ![sign in form](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905458/signin_gw6oje.png)
+
 - **Post Creation and Management**: Users can create, view, edit, and delete their travel posts.
 
+![post form](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905455/postform_kv5fjz.png)
+
 - **Interactive Posts**: Users can like, comment on, and share posts.
+
+![post example](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905651/postexample_jxemge.png)
+
 - **Advanced Search**: Feature-rich search functionality to find specific posts.
+
+![search example](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905723/searchexample_nf3kac.png)
+
 - **Follow System**: Users can follow each other to see updates in their feed.
+
+![profile follow](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905455/profilefollow_dpzlvu.png)
+
 - **Responsive Design**: Accessible on various devices, enhancing user experience.
+
+  - Navbar and other components render differently if user is logged in or out
+    ![logged in navbar](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905936/loggedinnav_vsq4yk.png)
+    ![logged out navbar](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699905935/loggedoutnav_qvhu6s.png)
 
 ### Reusable React Components
 
@@ -80,7 +115,11 @@ The GitHub project used throughout for both repositories can be found [here](htt
 - Avatar: Consistently displays user avatars across the platform.
 - NavBar: A reusable component providing navigation across the site.
 - NotFound Page: Displayed when users navigate to an invalid URL.
-- Edit/Delete Dropdown Menu: Enables users to manage their posts, events, comments, and reviews.
+- Edit/Delete Dropdown Menu: Enables users to manage their posts, comments, and profiles.
+
+### Future Features/Developments
+
+With more time the site could benefit from a range of more advanced features, mainly around geo/location tagging and user notifications. It would be a good user experience to be told when someone likes or comments on your post, or follows you.
 
 ## UI Design
 
@@ -94,7 +133,7 @@ A relatively neutral colour scheme was chosen with simplicity in mind, as this a
 
 The logo was created with the [logoai.com](https://www.logoai.com/) ai logo generator. I selected the theme, colour scheme, and name and then applied it through the website and as the favicon.
 
-![Logo](public/android-chrome-192x192.png)
+![Logo](https://res.cloudinary.com/share-the-plate-cloud/image/upload/v1699718048/media/images/android-chrome-144x144_ttwx7a.png)
 
 #### Typography
 
@@ -149,7 +188,6 @@ To deploy the application on Heroku and ensure that all features work as expecte
 - Connect your GitHub account and select the repository to be deployed.
 
 - Choose either manual deployment or enable automatic deployment.
-
 
 ## Acknowledgements
 
