@@ -205,4 +205,4 @@ To deploy the application on Heroku and ensure that all features work as expecte
 
 ## Acknowledgements
 
-Thanks to my mentors, Jubril Akolade and Chris Quinn for their advice and guidance. Thanks as well to the Code Institute team and tutors for their support.
+Thanks to my mentors, Jubril Akolade and Chris Quinn for their advice and guidance. Thanks as well to the Code Institute team and tutors for their support, many aspects of this site are guided and inspired by the moments project built by CodeInstitute.
