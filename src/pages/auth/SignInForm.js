@@ -106,14 +106,15 @@ function SignInForm() {
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/signup/">
-            Don't have an account? <span>Sign up now!</span>
+            Don&apos;t have an account? <span>Sign up now!</span>
           </Link>
         </Container>
         {isSafari && (
           <Container className={`mt-3`}>
             <Alert variant="info" className="mt-3">
-              If you're using Safari, please ensure "Prevent Cross-Site
-              Tracking" is disabled in your browser settings to enable sign-in.
+              If you&apos;re using Safari, please ensure &quot;Prevent
+              Cross-Site Tracking&quot; is disabled in your browser settings to
+              enable sign-in.
             </Alert>
           </Container>
         )}
